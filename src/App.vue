@@ -1,6 +1,7 @@
 <script>
 import CharacterList from './components/CharacterList.vue';
 import ResultsMessage from './components/ResultsMessage.vue';
+import AppSearch from './components/AppSearch.vue';
 import axios from 'axios';
 import { store } from './store';
 
@@ -13,6 +14,7 @@ export default {
 	components: {
 		CharacterList,
 		ResultsMessage,
+		AppSearch,
 	},
 	created() {
 		axios
@@ -31,6 +33,10 @@ export default {
 	</header>
 
 	<main>
+		<div class="container">
+			<AppSearch />
+		</div>
+
 		<div class="container">
 			<ResultsMessage />
 			<CharacterList />
@@ -73,6 +79,7 @@ nav {
 	padding: 1rem;
 	max-width: 1000px;
 	background-color: white;
+	margin-bottom: 2rem;
 }
 
 </style>

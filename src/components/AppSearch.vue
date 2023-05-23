@@ -3,7 +3,18 @@
 </script>
 
 <template>
- <h1>questo è l'appsearch</h1>
+    <select name="" id="">
+        <option value="">Select Archetype</option>
+        <option value="Alien">
+            Alien
+        </option>
+        <option value="Noble Knight">
+            Noble Knight
+        </option>
+        <option value="Melodious">
+            Melodious
+        </option>
+    </select>
 </template>
 
 <style scoped>

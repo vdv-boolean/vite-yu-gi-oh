@@ -8,18 +8,17 @@ export default {
 		};
 	},
 	methods: {
-		emitSearchEvent() {
-			this.$emit('performSearch');
-            console.log("performSearch");
-		},
+		search(event) {
+      this.$emit("loadCards");
+    },
 	},
 };
 </script>
 
 <template>
-    <select @change="emitSearchEvent">
+   <select v-model="store.archetype" @change="search">
         <option value="">Select Archetype</option>
-        <option v-for="archetype in store.archetypeList"> {{ archetype.archetype_name }}</option>
+        <option v-for="archetype in store.archetypeList" :value="archetype.archetype_name"> {{ archetype.archetype_name }}</option>
     </select>
 </template>
 

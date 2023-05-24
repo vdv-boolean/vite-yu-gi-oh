@@ -9,6 +9,7 @@ export default {
 	data() {
 		return {
 			store,
+			arch: "&archetype=",
 		};
 	},
 	components: {
@@ -17,14 +18,32 @@ export default {
 		AppSearch,
 	},
 	created() {
-		axios
-			.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
-			.then(response => (this.store.characterList = response.data.data));
-		axios
-			.get('https://db.ygoprodeck.com/api/v7/archetypes.php')
-			.then(response => (this.store.archetypeList = response.data));
-			
-	},
+    this.changeCards();
+    this.createArchtypes();
+  },
+  methods: {
+    changeCards(link) {
+      let archLink = this.arch + link;
+      if (link != null && link != "") {
+        archLink = this.arch + link;
+      } else {
+        archLink = "";
+      }
+      axios
+        .get(
+          "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=40&offset=0" +
+            archLink
+        )
+        .then((response) => (this.store.characterList = response.data.data));
+    },
+    createArchtypes() {
+      axios
+        .get("https://db.ygoprodeck.com/api/v7/archetypes.php")
+        .then((response) => (this.store.archetypeList = response.data));
+    },
+  },
+
+
 };
 </script>
 
@@ -38,7 +57,8 @@ export default {
 
 	<main>
 		<div class="container">
-			<AppSearch />
+			<!-- <AppSearch @loadCards="changeCards(store.archetype)" /> -->
+			<AppSearch @loadCards="changeCards(store.archetype)" />
 		</div>
 
 		<div class="container">
